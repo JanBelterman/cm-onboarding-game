@@ -27,14 +27,14 @@ public class PlayerMovement : MonoBehaviour {
             forward.Normalize();
             right.Normalize();
 
-            Vector3 relDirection = forward * direction.y + right * direction.x;
-            movement = new Vector3(relDirection.x, _rb.velocity.y, relDirection.z);
+            movement = forward * direction.y + right * direction.x;
         } else {
-            movement = new Vector3(direction.x, _rb.velocity.y, direction.y);
+            movement = new Vector3(direction.x, 0f, direction.y);
         }
         
         // Apply speed and deltatime
         movement = movement * (moveSpeed * Time.deltaTime);
+        movement.y = _rb.velocity.y;
 
         // Apply velocity
         _rb.velocity = movement;
