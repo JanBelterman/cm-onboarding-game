@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    public PlayerMovement _playerMovement;
+    public PlayerMovement playerMovement;
 
     private PlayerInputActions _inputAction;
     private Vector2 _movementInput;
@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        _playerMovement.MovePlayer(_movementInput);
+        playerMovement.MovePlayer(_movementInput);
+        // transform.eulerAngles = new Vector3(0, transform.rotation.y, 0);
     }
     
     private void OnEnable() {
