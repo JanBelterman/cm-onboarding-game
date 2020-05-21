@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
     [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private float rotationDamp = 0.15f;
     [SerializeField] private bool isRelativeToCamera = false;
 
     private Rigidbody _rb;
@@ -35,8 +36,21 @@ public class PlayerMovement : MonoBehaviour {
         // Apply speed and deltatime
         movement = movement * (moveSpeed * Time.deltaTime);
         movement.y = _rb.velocity.y;
+        
+        LookAhead(movement);
 
         // Apply velocity
         _rb.velocity = movement;
+    }
+
+    private void LookAhead(Vector3 movementDir) {
+        // Set input deadzone to ignore
+        if (movementDir.magnitude > 1.5f) {
+            Quaternion LookRotation = Quaternion.LookRotation(movementDir, Vector3.up);
+            // Remove other rotations so it only rotates on Y
+            Quaternion LookRotationY = Quaternion.Euler(transform.rotation.eulerAngles.x, LookRotation.eulerAngles.y,
+                transform.rotation.eulerAngles.z);
+            transform.rotation = Quaternion.Slerp(transform.rotation, LookRotationY, rotationDamp);
+        }
     }
 }
