@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerMovementOld : MonoBehaviour {
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private float rotationDamp = 0.15f;
-    [SerializeField] private bool isRelativeToCamera = false;
+    [SerializeField] private bool isRelativeToCamera = true;
 
     private Rigidbody _rb;
     private Camera _mainCamera;
