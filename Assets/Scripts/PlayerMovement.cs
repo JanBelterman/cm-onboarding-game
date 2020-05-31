@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private Rigidbody _rb;
     private Camera _mainCamera;
+    public Animator anim;
 
     public void Awake() {
         _rb = GetComponent<Rigidbody>();
@@ -41,6 +42,8 @@ public class PlayerMovement : MonoBehaviour {
 
         // Apply velocity
         _rb.velocity = movement;
+
+        anim.SetFloat("speed", (Mathf.Abs(direction.y) + Mathf.Abs(direction.x)));
     }
 
     private void LookAhead(Vector3 movementDir) {
