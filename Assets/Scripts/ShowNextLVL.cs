@@ -14,10 +14,9 @@ public class ShowNextLVL : MonoBehaviour
         thirdFloor.SetActive(false);
     }
 
-
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "TestPlayer")
+        if (col.CompareTag("Player"))
         {
             if(nextlvl.activeSelf)
             {
