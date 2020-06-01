@@ -36,6 +36,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "b5b71e25-8426-443b-9f0a-6e0999fe6655",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -157,6 +165,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5092c04-0106-4496-ae03-b484eea05d67",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard+Mouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "625bf444-9f5a-432a-a682-74e9d3c0f94c",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
