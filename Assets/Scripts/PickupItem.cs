@@ -10,6 +10,7 @@ public class PickupItem : MonoBehaviour {
 	private AudioSource[] sounds;
 	private AudioSource pickupSound;
 	private AudioSource dropSound;
+	public Animator anim;
 
 	
 	
@@ -38,6 +39,7 @@ public class PickupItem : MonoBehaviour {
 		    if (_nearbyPlayer.GetComponent<PlayerController>().Pickup(this)) {
 			    _carried = true;
 				pickupSound.Play();
+				anim.SetBool("hasObject", true);
 		    }
 	    }
     }
@@ -45,6 +47,7 @@ public class PickupItem : MonoBehaviour {
     public void Drop() {
 	    _carried = false;
 		dropSound.Play();
+		anim.SetBool("hasObject", false);
     }
     
     private void OnEnable() {
