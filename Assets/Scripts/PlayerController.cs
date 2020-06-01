@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
-    public PlayerMovement playerMovement;
+    public PlayerMovementOld playerMovementOld;
 
     private PlayerInputActions _inputActions;
     private Vector2 _movementInput;
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        playerMovement.MovePlayer(_movementInput);
+        playerMovementOld.MovePlayer(_movementInput);
     }
 
     // Pickup function. Returns true if item was picked up
