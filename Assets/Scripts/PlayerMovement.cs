@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour {
     private CharacterController _controller;
     private PlayerInputActions _inputActions;
     private Vector2 _movementInput;
+    private Vector3 _velocity;
     private Camera _camera;
 
     private void Awake() {
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour {
         
         // Check if the player is standing on the ground
         if (_controller.isGrounded) {
+            _velocity = Vector3.zero;
             movement *= moveSpeed;
         } else {
             // Movement if the player is mid-air
@@ -50,8 +52,8 @@ public class PlayerMovement : MonoBehaviour {
         }
         
         // Apply gravity
-        movement.y -= gravity * Time.deltaTime;
-        Debug.Log(movement.y);
+        _velocity.y += gravity * Time.deltaTime;
+        movement.y = _velocity.y;
 
         LookAhead(movement);
         
