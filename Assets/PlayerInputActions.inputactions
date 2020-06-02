@@ -82,6 +82,44 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Dialog Controls",
+            "id": "6bb58683-5f88-496e-9beb-93b6662ceb7b",
+            "actions": [
+                {
+                    "name": "NextDialog",
+                    "type": "Button",
+                    "id": "8073f160-bb6b-4b8d-9111-f7dfe89d7249",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "91c37e1c-d6f3-4021-844a-a5bcd4b06559",
+                    "path": "<Keyboard>/#(F)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "NextDialog",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d9ef089c-b8dc-41d4-b0ea-c79266ed5c83",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "NextDialog",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

@@ -95,6 +95,44 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dialog Controls"",
+            ""id"": ""6bb58683-5f88-496e-9beb-93b6662ceb7b"",
+            ""actions"": [
+                {
+                    ""name"": ""NextDialog"",
+                    ""type"": ""Button"",
+                    ""id"": ""8073f160-bb6b-4b8d-9111-f7dfe89d7249"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""91c37e1c-d6f3-4021-844a-a5bcd4b06559"",
+                    ""path"": ""<Keyboard>/#(F)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""NextDialog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9ef089c-b8dc-41d4-b0ea-c79266ed5c83"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""NextDialog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -125,6 +163,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         // Player Controls
         m_PlayerControls = asset.FindActionMap("Player Controls", throwIfNotFound: true);
         m_PlayerControls_Move = m_PlayerControls.FindAction("Move", throwIfNotFound: true);
+        // Dialog Controls
+        m_DialogControls = asset.FindActionMap("Dialog Controls", throwIfNotFound: true);
+        m_DialogControls_NextDialog = m_DialogControls.FindAction("NextDialog", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -203,6 +244,39 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         }
     }
     public PlayerControlsActions @PlayerControls => new PlayerControlsActions(this);
+
+    // Dialog Controls
+    private readonly InputActionMap m_DialogControls;
+    private IDialogControlsActions m_DialogControlsActionsCallbackInterface;
+    private readonly InputAction m_DialogControls_NextDialog;
+    public struct DialogControlsActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public DialogControlsActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @NextDialog => m_Wrapper.m_DialogControls_NextDialog;
+        public InputActionMap Get() { return m_Wrapper.m_DialogControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DialogControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IDialogControlsActions instance)
+        {
+            if (m_Wrapper.m_DialogControlsActionsCallbackInterface != null)
+            {
+                @NextDialog.started -= m_Wrapper.m_DialogControlsActionsCallbackInterface.OnNextDialog;
+                @NextDialog.performed -= m_Wrapper.m_DialogControlsActionsCallbackInterface.OnNextDialog;
+                @NextDialog.canceled -= m_Wrapper.m_DialogControlsActionsCallbackInterface.OnNextDialog;
+            }
+            m_Wrapper.m_DialogControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @NextDialog.started += instance.OnNextDialog;
+                @NextDialog.performed += instance.OnNextDialog;
+                @NextDialog.canceled += instance.OnNextDialog;
+            }
+        }
+    }
+    public DialogControlsActions @DialogControls => new DialogControlsActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -224,5 +298,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     public interface IPlayerControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
+    }
+    public interface IDialogControlsActions
+    {
+        void OnNextDialog(InputAction.CallbackContext context);
     }
 }
