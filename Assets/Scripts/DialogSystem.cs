@@ -116,17 +116,7 @@ public class DialogSystem : MonoBehaviour
 
                 if (currentCharacterIndex < stringLength)
                 {
-                    //if (Input.GetKey(DialogInput))
-                    //{
-                    // yield return new WaitForSeconds(letterDelay * letterMultiplier);
-
-                    // if (audioClip) audioSource.PlayOneShot(audioClip, 0.5F);
-                    // }
-                    //else
-                    //{
                     yield return new WaitForSeconds(letterDelay);
-
-                    //}
                 }
                 else
                 {
