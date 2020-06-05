@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour {
     private Camera _mainCamera;
     public Animator anim;
 
+    public SoundManager soundManager;
+
     public void Awake() {
         _rb = GetComponent<Rigidbody>();
         _mainCamera = Camera.main;
@@ -42,6 +44,11 @@ public class PlayerMovement : MonoBehaviour {
 
         // Apply velocity
         _rb.velocity = movement;
+        
+        if(Mathf.Abs(direction.y) + Mathf.Abs(direction.x) > 0) {
+        SoundManager.instance.PlayFootstep();
+
+        }
 
         anim.SetFloat("speed", (Mathf.Abs(direction.y) + Mathf.Abs(direction.x)));
     }
