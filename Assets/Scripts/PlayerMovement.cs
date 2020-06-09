@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
     public float midAirMoveSpeed = 10f;
     public float rotationDamp = 0.15f;
     public float gravity = 20f;
+    public Animator characterAnimator;
 
     private CharacterController _controller;
     private PlayerInputActions _inputActions;
@@ -21,7 +22,6 @@ public class PlayerMovement : MonoBehaviour {
         _inputActions = new PlayerInputActions();
         _inputActions.PlayerControls.Move.performed += ctx => _movementInput = ctx.ReadValue<Vector2>();
         _camera = Camera.main;
-    public SoundManager soundManager;
     }
 
     private void Update() {
@@ -60,12 +60,18 @@ public class PlayerMovement : MonoBehaviour {
         
         // Apply movement to CharacterController
         _controller.Move(movement * Time.deltaTime);
-        anim.SetFloat("speed", (Mathf.Abs(direction.y) + Mathf.Abs(direction.x)));
-        SoundManager.instance.PlayFootstep();
-        if(Mathf.Abs(direction.y) + Mathf.Abs(direction.x) > 0) {
 
+        // Set animations and sound
+        var horMovement = movement;
+        horMovement.y = 0f;
+        if (horMovement.magnitude > 0) {
+            SoundManager.instance.PlayFootstep();
         }
-
+        
+        if (characterAnimator != null) {
+            // characterAnimator.SetFloat("speed", (Mathf.Abs(movement.y) + Mathf.Abs(movement.x)));
+            characterAnimator.SetFloat("speed", (horMovement.magnitude));
+        }
     }
     
     private void LookAhead(Vector3 movementDir) {

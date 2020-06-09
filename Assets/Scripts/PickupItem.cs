@@ -36,7 +36,7 @@ public class PickupItem : MonoBehaviour {
 
 	public void Pickup(InputAction.CallbackContext ctx) {
 	    if (_nearbyPlayer!= null && !_carried) {
-		    if (_nearbyPlayer.GetComponent<PlayerController>().Pickup(this)) {
+		    if (_nearbyPlayer.GetComponent<PickupController>().Pickup(this)) {
 			    _carried = true;
 				pickupSound.Play();
 				anim.SetBool("hasObject", true);
