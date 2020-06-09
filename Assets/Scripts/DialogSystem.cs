@@ -17,6 +17,7 @@ public class DialogSystem : MonoBehaviour
     public string Names;
 
     public string[] dialogLines;
+    public Quest givenQuest;
 
     public bool letterIsMultiplied = false;
     public bool dialogActive = false;
@@ -77,8 +78,8 @@ public class DialogSystem : MonoBehaviour
                     letterIsMultiplied = true;
                     StartCoroutine(DisplayString(dialogLines[currentDialogIndex++]));
 
-                    if (currentDialogIndex >= dialogLength)
-                    {
+                    if (currentDialogIndex >= dialogLength) {
+                        FindObjectOfType<QuestManager>().AcceptQuest(givenQuest);
                         dialogEnded = true;
                     }
                 }

@@ -10,6 +10,7 @@ public class NPC : MonoBehaviour
     private DialogSystem dialogSystem;
 
     public string Name;
+    public Quest givenQuest;
 
     [TextArea(5, 10)]
     public string[] sentences;
@@ -35,6 +36,7 @@ public class NPC : MonoBehaviour
             this.gameObject.GetComponent<NPC>().enabled = true;
             dialogSystem.Names = Name;
             dialogSystem.dialogLines = sentences;
+            dialogSystem.givenQuest = givenQuest;
             FindObjectOfType<DialogSystem>().NPCName();
         }
     }

@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f181a9f0b723872419a074938bba0e98, type: 3}
-  m_Name: TestQuest1
+  m_Name: TestQuest2
   m_EditorClassIdentifier: 
-  title: Test Quest 1
-  description: This is a test quest.
-  requiredQuests: []
+  title: Test Quest 2
+  description: This is a second test quest that requires the first test quest.
+  requiredQuests:
+  - {fileID: 11400000, guid: a72fb0ca9aea6a54aab64a28af7fec2d, type: 2}
