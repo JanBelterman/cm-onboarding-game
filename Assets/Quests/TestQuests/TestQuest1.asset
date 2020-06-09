@@ -15,3 +15,9 @@ MonoBehaviour:
   title: Test Quest 1
   description: This is a test quest.
   requiredQuests: []
+  questGoals:
+  - id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }

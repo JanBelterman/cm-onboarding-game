@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface QuestGoal {
+public interface IQuestGoal {
     bool isCompleted();
 }

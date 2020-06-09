@@ -8,8 +8,6 @@ public class QuestManager : MonoBehaviour {
     public List<Quest> activeQuests;
     public List<Quest> completedQuests;
 
-    [SerializeField] public QuestGoal testgoal;
-
     private void Awake() {
         activeQuests = new List<Quest>();
         completedQuests = new List<Quest>();

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ItemDeliveryGoal : QuestGoal {
+public class ItemDeliveryGoal : IQuestGoal {
+    [Header("Item Delivery Goal")]
+    public float test;
+    
     public Dictionary<PickupItem, bool> requiredItems = new Dictionary<PickupItem, bool>();
-    [SerializeField] public float hack;
 
     public bool isCompleted() {
         foreach (var pair in requiredItems) {

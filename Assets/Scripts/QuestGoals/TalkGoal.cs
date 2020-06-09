@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TalkGoal : QuestGoal {
+public class TalkGoal : IQuestGoal {
     [SerializeField] public float hack;
     public bool isCompleted() {
 
