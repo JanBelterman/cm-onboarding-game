@@ -10,6 +10,11 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip footstepSound;
 
+    public AudioClip menuHoverSound;
+    public AudioClip menuSelectionSound1;
+    public AudioClip menuSelectionSound2;
+    public AudioClip menuSelectionSound3;
+
     private void Awake() {
         if(instance == null) {
             instance = this;
@@ -27,5 +32,16 @@ public class SoundManager : MonoBehaviour
         }
         
     }
-    
+    public void PlayMenuHover() {
+        audioSource.PlayOneShot(menuHoverSound);
+    }
+    public void PlayMenuSelection1() {
+        audioSource.PlayOneShot(menuSelectionSound1);
+    }
+    public void PlayMenuSelection2() {
+        audioSource.PlayOneShot(menuSelectionSound2);
+    }
+    public void PlayMenuSelection3() {
+        audioSource.PlayOneShot(menuSelectionSound3);
+    }
 }
