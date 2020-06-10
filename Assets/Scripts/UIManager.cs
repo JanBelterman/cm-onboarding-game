@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour {
 
     [Header("Quest Puzzle Screen")] 
     public GameObject puzzleScreen;
-    public TextMeshProUGUI inputField;
+    public TMP_InputField inputField;
     public GameObject feedbackText;
 
     private QuestManager _questManager;

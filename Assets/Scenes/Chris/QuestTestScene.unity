@@ -13964,7 +13964,7 @@ MonoBehaviour:
   questAcceptTitle: {fileID: 339032161}
   questAcceptDescription: {fileID: 534682814}
   puzzleScreen: {fileID: 602374314}
-  inputField: {fileID: 808295145}
+  inputField: {fileID: 43538717}
   feedbackText: {fileID: 361902956}
 --- !u!4 &2101961105
 Transform:
@@ -14178,7 +14178,7 @@ PrefabInstance:
     - target: {fileID: 8273935473555093768, guid: b5cbb81fa64e62645977569060ebd7c1,
         type: 3}
       propertyPath: availableQuests.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8273935473555093768, guid: b5cbb81fa64e62645977569060ebd7c1,
         type: 3}
