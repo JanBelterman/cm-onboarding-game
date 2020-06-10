@@ -49,6 +49,7 @@ public class QuestManager : MonoBehaviour {
     }
 
     public IEnumerator CompleteQuest(NPC completionNPC, PickupItem heldItem) {
+        List<Quest> tempCompletedQuests = new List<Quest>();
         foreach (Quest questMatch in activeQuests.Where(quest => quest.deliveryNPC == completionNPC)) {
             if (questMatch.requiredItem == heldItem) {
                 _uiManager.ShowPuzzle();
@@ -68,12 +69,21 @@ public class QuestManager : MonoBehaviour {
                 _uiManager.PuzzleCorrect();
 
                 completedQuests.Add(questMatch);
-                activeQuests.Remove(questMatch);
+                tempCompletedQuests.Add(questMatch);
+                // activeQuests.Remove(questMatch);
                 _pickupController.Remove();
                 Debug.Log($"Quest: \"{questMatch.QuestData.title}\" completed.");
             }
         }
 
+        foreach (Quest quest in tempCompletedQuests) {
+            activeQuests.Remove(quest);
+        }
+
         yield return null;
+    }
+
+    public void StopCoroutines() {
+        StopAllCoroutines();
     }
 }

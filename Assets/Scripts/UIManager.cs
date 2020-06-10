@@ -45,6 +45,11 @@ public class UIManager : MonoBehaviour {
         _questManager.enteredPuzzle = inputField.text;
     }
 
+    public void OnPuzzleClose() {
+        puzzleScreen.SetActive(false);
+        _questManager.StopCoroutines();
+    }
+
     public void PuzzleCorrect() {
         inputField.text = string.Empty;
         puzzleScreen.SetActive(false);
