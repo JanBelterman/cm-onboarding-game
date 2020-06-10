@@ -25,7 +25,7 @@ public class NPC : MonoBehaviour
             // Check if player is completing quest
             var pickupCont = other.GetComponent<PickupController>();
             var heldItem = pickupCont.heldItem;
-            if (other.GetComponent<QuestManager>().CompleteQuest(this, heldItem)) pickupCont.Remove();
+            StartCoroutine(other.GetComponent<QuestManager>().CompleteQuest(this, heldItem));
             
             _dialogSystem.Names = Name;
             _dialogSystem.dialogLines = sentences;
