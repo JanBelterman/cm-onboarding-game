@@ -49,25 +49,16 @@ public class QuestManager : MonoBehaviour {
     }
 
     public IEnumerator CompleteQuest(NPC completionNPC, PickupItem heldItem) {
+        List<Quest> tempCompletedQuests = new List<Quest>();
         foreach (Quest questMatch in activeQuests.Where(quest => quest.deliveryNPC == completionNPC)) {
             if (questMatch.requiredItem == heldItem) {
                 _uiManager.ShowPuzzle();
-
                 
                 while (!enteredPuzzle.Equals(questMatch.QuestData.puzzleAnswer.Trim())) {
                     while (String.IsNullOrEmpty(enteredPuzzle)) {
                         yield return null;
                     }
-
-                    string test1 = "kut";
-                    string test2 = "kut";
                     
-                    Debug.Log(test1.Equals(test2));
-
-                    Debug.Log(enteredPuzzle.Trim().ToString() + " --- " + questMatch.QuestData.puzzleAnswer.Trim().ToString());
-                    Debug.Log(enteredPuzzle.GetType() + " --- " + questMatch.QuestData.puzzleAnswer.GetType());
-                    Debug.Log(enteredPuzzle.Trim().Equals(questMatch.QuestData.puzzleAnswer.Trim()));
-                    Debug.Log(string.Compare(enteredPuzzle.Trim(), questMatch.QuestData.puzzleAnswer.Trim()));
                     if (!enteredPuzzle.Equals(questMatch.QuestData.puzzleAnswer.Trim())) {
                         StartCoroutine(_uiManager.PuzzleIncorrect());
                         enteredPuzzle = String.Empty;
@@ -78,12 +69,21 @@ public class QuestManager : MonoBehaviour {
                 _uiManager.PuzzleCorrect();
 
                 completedQuests.Add(questMatch);
-                activeQuests.Remove(questMatch);
+                tempCompletedQuests.Add(questMatch);
+                // activeQuests.Remove(questMatch);
                 _pickupController.Remove();
                 Debug.Log($"Quest: \"{questMatch.QuestData.title}\" completed.");
             }
         }
 
+        foreach (Quest quest in tempCompletedQuests) {
+            activeQuests.Remove(quest);
+        }
+
         yield return null;
+    }
+
+    public void StopCoroutines() {
+        StopAllCoroutines();
     }
 }
