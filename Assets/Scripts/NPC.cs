@@ -1,50 +1,48 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [System.Serializable]
 public class NPC : MonoBehaviour
 {
-
-    public Transform ChatBackGround;
-    public Transform NPCCharacter;
-
-    private DialogSystem dialogSystem;
-
+    public Transform chatObject;
+    [Header("NPC Data")]
     public string Name;
-    public Quest givenQuest;
 
     [TextArea(5, 10)]
     public string[] sentences;
+    
+    private DialogSystem _dialogSystem;
+    private PlayerInputActions _inputActions;
 
-    void Start()
-    {
-        dialogSystem = FindObjectOfType<DialogSystem>();
-    }
-
-    void Update()
-    {
-        Vector3 Pos = Camera.main.WorldToScreenPoint(NPCCharacter.position);
-        Pos.y += 100;
-        ChatBackGround.position = Pos;
+    void Awake() {
+        _dialogSystem = FindObjectOfType<DialogSystem>();
+        _inputActions = new PlayerInputActions();
     }
 
     public void OnTriggerStay(Collider other)
     {
-        this.gameObject.GetComponent<NPC>().enabled = true;
-        FindObjectOfType<DialogSystem>().EnterRangeOfNPC();
-        if ((other.gameObject.tag == "Player")) //  && Input.GetKeyDown(KeyCode.F)
-        {
-            this.gameObject.GetComponent<NPC>().enabled = true;
-            dialogSystem.Names = Name;
-            dialogSystem.dialogLines = sentences;
-            dialogSystem.givenQuest = givenQuest;
-            FindObjectOfType<DialogSystem>().NPCName();
+        if (other.CompareTag("Player") && _inputActions.DialogControls.NextDialog.triggered) {
+            // Check if player is completing quest
+            var pickupCont = other.GetComponent<PickupController>();
+            var heldItem = pickupCont.heldItem;
+            if (other.GetComponent<QuestManager>().CompleteQuest(this, heldItem)) pickupCont.Remove();
+            
+            _dialogSystem.Names = Name;
+            _dialogSystem.dialogLines = sentences;
+            FindObjectOfType<DialogSystem>().EnterRangeOfNPC(this);
         }
     }
 
-    public void OnTriggerExit()
-    {
+    public void OnTriggerExit() {
         FindObjectOfType<DialogSystem>().OutOfRange();
-        this.gameObject.GetComponent<NPC>().enabled = false;
+    }
+
+    private void OnEnable() {
+        _inputActions.Enable();
+    }
+
+    private void OnDisable() {
+        _inputActions.Disable();
     }
 }
 

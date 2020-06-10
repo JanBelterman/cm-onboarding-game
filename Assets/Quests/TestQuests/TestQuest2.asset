@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Test Quest 2
   description: This is a second test quest that requires the first test quest.
+  puzzleAnswer: test2
   requiredQuests:
   - {fileID: 11400000, guid: a72fb0ca9aea6a54aab64a28af7fec2d, type: 2}
-  questGoals: []
-  references:
-    version: 1

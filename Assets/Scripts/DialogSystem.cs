@@ -10,6 +10,7 @@ public class DialogSystem : MonoBehaviour
     public Text dialogText;
 
     public Transform dialogBoxGUI;
+    public Transform dialogBoxTransform;
 
     public float letterDelay = 0.1f;
     public float letterMultiplier = 0.5f;
@@ -17,42 +18,34 @@ public class DialogSystem : MonoBehaviour
     public string Names;
 
     public string[] dialogLines;
-    public Quest givenQuest;
 
     public bool letterIsMultiplied = false;
     public bool dialogActive = false;
     public bool dialogEnded = false;
     public bool outOfRange = true;
 
-    public bool dialogControlClicked = false;
+    // public bool dialogControlClicked = false;
     private PlayerInputActions _inputAction;
+    private NPC _currentNPC;
 
     private void Awake()
     {
         dialogText.text = "";
 
         _inputAction = new PlayerInputActions();
-        _inputAction.DialogControls.NextDialog.performed += ctx => dialogControlClicked = true;
+        // _inputAction.DialogControls.NextDialog.performed += ctx => dialogControlClicked = true;
     }
 
-    private void OnEnable()
-    {
-        _inputAction.Enable();
+    private void Update() {
+        if (_currentNPC != null) {
+            var dialogPos = Camera.main.WorldToScreenPoint(_currentNPC.transform.position);
+            dialogPos.y += 100f;
+            dialogBoxTransform.position = dialogPos;
+        }
     }
 
-    private void OnDisable()
-    {
-        _inputAction.Disable();
-    }
-
-    public void EnterRangeOfNPC()
-    {
-        StartDialog();
-        outOfRange = false;
-    }
-
-    public void NPCName()
-    {
+    public void EnterRangeOfNPC(NPC currentNPC) {
+        _currentNPC = currentNPC;
         outOfRange = false;
         dialogBoxGUI.gameObject.SetActive(true);
         nameText.text = Names;
@@ -61,8 +54,19 @@ public class DialogSystem : MonoBehaviour
             dialogActive = true;
             StartCoroutine(StartDialog());
         }
-        StartDialog();
     }
+
+    // public void NPCName()
+    // {
+    //     outOfRange = false;
+    //     dialogBoxGUI.gameObject.SetActive(true);
+    //     nameText.text = Names;
+    //     if (!dialogActive)
+    //     {
+    //         dialogActive = true;
+    //         StartCoroutine(StartDialog());
+    //     }
+    // }
 
     private IEnumerator StartDialog()
     {
@@ -79,7 +83,9 @@ public class DialogSystem : MonoBehaviour
                     StartCoroutine(DisplayString(dialogLines[currentDialogIndex++]));
 
                     if (currentDialogIndex >= dialogLength) {
-                        FindObjectOfType<QuestManager>().AcceptQuest(givenQuest);
+                        if (_currentNPC.TryGetComponent(out QuestGiver questGiver)) {
+                            StartCoroutine(questGiver.GiveQuest());
+                        }
                         dialogEnded = true;
                     }
                 }
@@ -88,7 +94,7 @@ public class DialogSystem : MonoBehaviour
 
             while (true)
             {
-                if (dialogEnded == false && dialogControlClicked)
+                if (dialogEnded == false && _inputAction.DialogControls.NextDialog.triggered)
                 {
                     break;
                 }
@@ -127,9 +133,9 @@ public class DialogSystem : MonoBehaviour
             }
             while (true)
             {
-                if (dialogControlClicked)
+                if (_inputAction.DialogControls.NextDialog.triggered)
                 {
-                    dialogControlClicked = false;
+                    // dialogControlClicked = false;
                     break;
                 }
                 yield return 0;
@@ -143,6 +149,7 @@ public class DialogSystem : MonoBehaviour
     public void DropDialog()
     {
         dialogBoxGUI.gameObject.SetActive(false);
+        _currentNPC = null;
     }
 
     public void OutOfRange()
@@ -154,6 +161,17 @@ public class DialogSystem : MonoBehaviour
             dialogActive = false;
             StopAllCoroutines();
             dialogBoxGUI.gameObject.SetActive(false);
+            _currentNPC = null;
         }
+    }
+
+    private void OnEnable()
+    {
+        _inputAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _inputAction.Disable();
     }
 }

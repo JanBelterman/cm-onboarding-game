@@ -5,13 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class ItemDeliveryGoal : IQuestGoal {
     [Header("Item Delivery Goal")]
-    public float test;
-    
-    public Dictionary<PickupItem, bool> requiredItems = new Dictionary<PickupItem, bool>();
+    public NPC deliveryNPC;
+    public List<DeliveryItem> requiredItems;
 
     public bool isCompleted() {
-        foreach (var pair in requiredItems) {
-            if (!pair.Value) return false;
+        foreach (var deliveryItem in requiredItems) {
+            if (!deliveryItem.delivered) return false;
         }
 
         return true;
