@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f181a9f0b723872419a074938bba0e98, type: 3}
+  m_Name: MobileAccountQuest
+  m_EditorClassIdentifier: 
+  title: Work on your phone
+  description: het is handig als je ook op je telefoon je zaken kan inzien
+  puzzleAnswer: 
+  requiredQuests:
+  - {fileID: 11400000, guid: 9ddbe203bd277e94fbce79028dd95957, type: 2}
+  - {fileID: 11400000, guid: 4a323ca56f270df4b80418f3905376ef, type: 2}
+  - {fileID: 11400000, guid: b15df165a23a73a4f8a612435b7fe44f, type: 2}
+  - {fileID: 11400000, guid: d6e1e94411809d1419bfd0c19f75bc49, type: 2}
+  - {fileID: 11400000, guid: d89b0d285d4de9c409d5d6991a70eb7c, type: 2}
+  - {fileID: 11400000, guid: ecab8796948b6e6429e4d929ddcb810c, type: 2}
+  - {fileID: 11400000}
