@@ -65,7 +65,11 @@ public class PlayerMovement : MonoBehaviour {
         var horMovement = movement;
         horMovement.y = 0f;
         if (horMovement.magnitude > 0) {
-            SoundManager.instance.PlayFootstep();
+            if (SoundManager.instance != null) {
+                SoundManager.instance.PlayFootstep();
+            } else {
+                Debug.LogError("No SoundManager instance found.");
+            }
         }
         
         if (characterAnimator != null) {

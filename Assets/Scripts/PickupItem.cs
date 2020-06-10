@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PickupItem : MonoBehaviour {
+		
 	private PlayerInputActions _inputActions;
 	private bool _carried = false;
 	private GameObject _nearbyPlayer = null;
@@ -10,16 +11,15 @@ public class PickupItem : MonoBehaviour {
 	private AudioSource[] sounds;
 	private AudioSource pickupSound;
 	private AudioSource dropSound;
-	public Animator anim;
+	private Rigidbody _rigidbody;
 
-	
-	
 	void Awake() {
 		_inputActions = new PlayerInputActions();
 		_inputActions.PlayerControls.Interact.performed += Pickup;
 		sounds = GetComponents<AudioSource>();
 		pickupSound = sounds[0];
 		dropSound = sounds[1];
+		_rigidbody = GetComponent<Rigidbody>();
 	}
 
 	private void OnTriggerEnter(Collider other) {
@@ -37,9 +37,9 @@ public class PickupItem : MonoBehaviour {
 	public void Pickup(InputAction.CallbackContext ctx) {
 	    if (_nearbyPlayer!= null && !_carried) {
 		    if (_nearbyPlayer.GetComponent<PickupController>().Pickup(this)) {
+			    _rigidbody.isKinematic = true;
 			    _carried = true;
 				pickupSound.Play();
-				anim.SetBool("hasObject", true);
 		    }
 	    }
     }
@@ -47,7 +47,7 @@ public class PickupItem : MonoBehaviour {
     public void Drop() {
 	    _carried = false;
 		dropSound.Play();
-		anim.SetBool("hasObject", false);
+		_rigidbody.isKinematic = false;
     }
     
     private void OnEnable() {
