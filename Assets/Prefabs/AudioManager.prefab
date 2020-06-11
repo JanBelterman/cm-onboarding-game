@@ -52,6 +52,7 @@ MonoBehaviour:
   menuSelectionSound1: {fileID: 8300000, guid: c20d3de0f62cb214cbd1995fcf12e0c5, type: 3}
   menuSelectionSound2: {fileID: 8300000, guid: ea1f0f142dd65ca41a12644825c09a0b, type: 3}
   menuSelectionSound3: {fileID: 8300000, guid: 0b237cfff0ce9c4479264ad4bbcc9fe7, type: 3}
+  questCompleteSound: {fileID: 8300000, guid: ee2693ff2e588e744be0428f0f80449a, type: 3}
 --- !u!82 &5800589344162242452
 AudioSource:
   m_ObjectHideFlags: 0

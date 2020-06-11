@@ -60,20 +60,7 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator showQuestCompleted()
     {
-        _audioManager.PlayMenuSelection3();
-        yield return new WaitForSeconds(0.1F);
-        _audioManager.PlayMenuSelection3();
-        yield return new WaitForSeconds(0.1F);
-        _audioManager.PlayMenuSelection3();
-        yield return new WaitForSeconds(0.1F);
-        _audioManager.PlayMenuSelection3();
-        yield return new WaitForSeconds(0.1F);
-        _audioManager.PlayMenuSelection3();
-        yield return new WaitForSeconds(0.1F);
-        _audioManager.PlayMenuSelection3();
-        yield return new WaitForSeconds(0.1F);
-        _audioManager.PlayMenuSelection3();
-
+        _audioManager.PlayQuestCompleteSound();
         yield return new WaitForSeconds(3);
         completedQuest.SetActive(false);
     }
