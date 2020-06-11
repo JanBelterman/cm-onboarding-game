@@ -21,13 +21,19 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI currentQuestTitle;
     public TextMeshProUGUI currentQuestDescription;
 
+    [Header("Completed quest HUD")]
+    public GameObject completedQuest;
+    public TextMeshProUGUI completedQuestTitle;
+
     private QuestManager _questManager;
     private PlayerInputActions _inputActions;
+    private SoundManager _audioManager;
 
     private void Awake()
     {
         _questManager = FindObjectOfType<QuestManager>();
         _inputActions = new PlayerInputActions();
+        _audioManager = FindObjectOfType<SoundManager>();
     }
 
     public void ShowQuest(Quest quest)
@@ -46,10 +52,30 @@ public class UIManager : MonoBehaviour
 
     public void hideCurrentQuest()
     {
-        currentQuestTitle.text = "COMPLETED!";
-        // yield return new WaitForSeconds(1);
-        // Debug.Log("test jan");
         questHud.SetActive(false);
+        completedQuest.SetActive(true);
+        completedQuestTitle.text = currentQuestTitle.text;
+        StartCoroutine(showQuestCompleted());
+    }
+
+    public IEnumerator showQuestCompleted()
+    {
+        _audioManager.PlayMenuSelection3();
+        yield return new WaitForSeconds(0.1F);
+        _audioManager.PlayMenuSelection3();
+        yield return new WaitForSeconds(0.1F);
+        _audioManager.PlayMenuSelection3();
+        yield return new WaitForSeconds(0.1F);
+        _audioManager.PlayMenuSelection3();
+        yield return new WaitForSeconds(0.1F);
+        _audioManager.PlayMenuSelection3();
+        yield return new WaitForSeconds(0.1F);
+        _audioManager.PlayMenuSelection3();
+        yield return new WaitForSeconds(0.1F);
+        _audioManager.PlayMenuSelection3();
+
+        yield return new WaitForSeconds(3);
+        completedQuest.SetActive(false);
     }
 
     public void ShowPuzzle()
