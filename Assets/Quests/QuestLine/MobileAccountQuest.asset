@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: MobileAccountQuest
   m_EditorClassIdentifier: 
   title: Work on your phone
-  description: het is handig als je ook op je telefoon je zaken kan inzien
+  description: het is handig als je ook op je telefoon je zaken kan inzien. Ga naar
+    <b> Ticketing <b>
   puzzleAnswer: 
   requiredQuests:
   - {fileID: 11400000, guid: 9ddbe203bd277e94fbce79028dd95957, type: 2}
