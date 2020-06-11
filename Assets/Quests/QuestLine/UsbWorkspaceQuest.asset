@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: UsbWorkspaceQuest
   m_EditorClassIdentifier: 
   title: Get your workspace from BigTech
-  description: 'de pc op je werkplek is leeg atm. de usb die je gekregen hebt vanuit
-    team voice kan je helpen om je werkplek te instaleren. hij is leeg... '
+  description: De pc op je werkplek is leeg op dit moment. De usb die je gekregen
+    hebt vanuit team voice kan je helpen om je werkplek te instaleren. Hij is leeg...
+    Vul hem bij Big Tech
   puzzleAnswer: 
   requiredQuests:
   - {fileID: 11400000, guid: 9ddbe203bd277e94fbce79028dd95957, type: 2}
