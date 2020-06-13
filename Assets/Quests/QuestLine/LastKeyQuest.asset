@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: LastKeyQuest
   m_EditorClassIdentifier: 
   title: Almost done find the last key by genius
-  description: je bent bijna klaar om de ceo te spreken het laatste onderdeel is
+  description: Je bent bijna klaar om de CEO te spreken het laatste onderdeel is
     <b>Genius<b> op de 1e verdieping
   puzzleAnswer: 
+  accessToCEO: 0
   requiredQuests:
   - {fileID: 11400000, guid: 9ddbe203bd277e94fbce79028dd95957, type: 2}
   - {fileID: 11400000, guid: 4a323ca56f270df4b80418f3905376ef, type: 2}

@@ -8,6 +8,8 @@ public class QuestManager : MonoBehaviour
 {
     public List<Quest> activeQuests;
     public List<Quest> completedQuests;
+    public Animator assistentAnimator;
+
 
     [HideInInspector] public bool acceptClicked = false;
     [HideInInspector] public bool declineClicked = false;
@@ -76,6 +78,13 @@ public class QuestManager : MonoBehaviour
                     {
                         StartCoroutine(_uiManager.PuzzleIncorrect());
                         enteredPuzzle = String.Empty;
+                    }
+                }
+                if(questMatch.QuestData.accessToCEO == true) {
+                    if (assistentAnimator != null) {
+                    assistentAnimator.SetBool("AccessToCEO", true);
+                    Debug.Log("Access status: " + assistentAnimator.GetBool("AccessToCEO"));
+                    Debug.Log("Access granted to CEO");
                     }
                 }
 

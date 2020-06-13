@@ -8,6 +8,7 @@ public class QuestData : ScriptableObject {
     public string title;
     [TextArea] public string description;
     public string puzzleAnswer;
+    public bool accessToCEO;
     public QuestData[] requiredQuests;
 
     // [SerializeReference] public List<IQuestGoal> questGoal;

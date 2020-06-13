@@ -16,6 +16,7 @@ MonoBehaviour:
   description: In het gebouw waar je je op dit moment bevind kan je een rebus ophalen
     bij de afdeling Ticketing.
   puzzleAnswer: Evenement
+  accessToCEO: 1
   requiredQuests:
   - {fileID: 11400000, guid: 9ddbe203bd277e94fbce79028dd95957, type: 2}
   - {fileID: 11400000, guid: 4a323ca56f270df4b80418f3905376ef, type: 2}

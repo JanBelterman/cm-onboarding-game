@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: MeetCEOQuest
   m_EditorClassIdentifier: 
   title: Meet the CEO.
-  description: je hebt je voorbereid je kan nu op je gemak het gesprek aan met de
-    ceo
+  description: Je hebt je voorbereid je kan nu op je gemak het gesprek aan met de
+    CEO
   puzzleAnswer: 
+  accessToCEO: 0
   requiredQuests:
   - {fileID: 11400000, guid: 9ddbe203bd277e94fbce79028dd95957, type: 2}
   - {fileID: 11400000, guid: 4a323ca56f270df4b80418f3905376ef, type: 2}

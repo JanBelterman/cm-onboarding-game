@@ -15,4 +15,5 @@ MonoBehaviour:
   title: Find your workspace!!
   description: Als nieuwe werknemer moet je jou werkplek zoeken.
   puzzleAnswer: 
+  accessToCEO: 1
   requiredQuests: []

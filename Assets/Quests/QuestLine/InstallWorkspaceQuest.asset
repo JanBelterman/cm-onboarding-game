@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: InstallWorkspaceQuest
   m_EditorClassIdentifier: 
   title: Install your workspace
-  description: je hebt de programma's nu kan je ze instaleren op je werkplek
+  description: Je hebt de programma's, nu kan je ze instaleren op je werkplek
   puzzleAnswer: 
+  accessToCEO: 0
   requiredQuests:
   - {fileID: 11400000, guid: 9ddbe203bd277e94fbce79028dd95957, type: 2}
   - {fileID: 11400000, guid: 4a323ca56f270df4b80418f3905376ef, type: 2}
