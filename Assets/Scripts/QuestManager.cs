@@ -9,6 +9,8 @@ public class QuestManager : MonoBehaviour
     public List<Quest> activeQuests;
     public List<Quest> completedQuests;
 
+    public event Action<GameObject> OnQuestAccept;
+
     [HideInInspector] public bool acceptClicked = false;
     [HideInInspector] public bool declineClicked = false;
     [HideInInspector] public string enteredPuzzle = null;
@@ -53,6 +55,7 @@ public class QuestManager : MonoBehaviour
 
         Debug.Log($"Quest: \"{quest.QuestData.title}\" added to active quests.");
         activeQuests.Add(quest);
+        OnQuestAccept?.Invoke(quest.deliveryNPC.gameObject);
         _uiManager.showCurrentQuest(quest);
     }
 
